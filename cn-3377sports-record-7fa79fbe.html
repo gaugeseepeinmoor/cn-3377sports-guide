@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3377体育 · 信息索引与资料卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 = 信息导航氛围 */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 80%);
+            color: #e2e8f0;
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+            opacity: 0.4;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 680px;
+            margin: 0.5rem auto 0;
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+        }
+
+        /* 浅色正文区 + 卡片体系 */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 1.75rem;
+            padding-left: 1rem;
+            border-left: 4px solid #38bdf8;
+            color: #0f172a;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
+            border: 1px solid #e9edf2;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+            border-color: #cbd5e1;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .card p {
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .card .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .tag-list span {
+            background: #f1f5f9;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        /* 自然链接段落 + 强调色 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2rem 2rem 1.8rem;
+            margin: 2rem 0 3rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .link-paragraph p {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            color: #1e293b;
+        }
+
+        .link-paragraph a {
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .link-paragraph a:hover {
+            border-bottom-color: #2563eb;
+            color: #1d4ed8;
+        }
+
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: #38bdf8;
+            margin: 2.5rem 0 1.8rem;
+            border-radius: 4px;
+        }
+
+        .faq-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.8rem;
+        }
+
+        .faq-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            color: #0f172a;
+        }
+
+        .faq-item p {
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        .hint-box {
+            background: #f8fafc;
+            border-left: 4px solid #94a3b8;
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2.2rem 0 1rem;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 2rem 0 0.5rem;
+            border-top: 1px solid #e2e8f0;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .sub {
+                font-size: 0.95rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .faq-mini {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .link-paragraph {
+                padding: 1.5rem;
+            }
+            .container {
+                padding: 1.8rem 1rem 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2.8rem 1rem 2.5rem;
+            }
+            .card {
+                padding: 1.3rem;
+            }
+            .section-title {
+                font-size: 1.35rem;
+                padding-left: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图：资料索引氛围 -->
+    <header class="hero">
+        <h1>3377体育 · 信息整理</h1>
+        <div class="sub">结构化卡片 · 资料索引 · 运动场景参考</div>
+    </header>
+
+    <main class="container">
+
+        <!-- 用途卡片区 -->
+        <h2 class="section-title">使用场景卡片</h2>
+        <div class="card-grid">
+            <div class="card">
+                <span class="badge">信息查询</span>
+                <h3>赛事与数据</h3>
+                <p>提供多种体育项目的基础资料、赛程结构及规则说明，便于快速查阅和横向比较。</p>
+                <div class="tag-list">
+                    <span>足球</span><span>篮球</span><span>网球</span><span>电竞赛事</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="badge">人群适配</span>
+                <h3>爱好者与研究者</h3>
+                <p>从入门爱好者到资料整理者，均可利用分类索引理解运动体系，辅助内容收集。</p>
+                <div class="tag-list">
+                    <span>学生</span><span>数据分析</span><span>内容编辑</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="badge">知识沉淀</span>
+                <h3>运动常识汇编</h3>
+                <p>将分散的体育知识点梳理为结构化摘要，提升信息查找效率，减少重复搜索。</p>
+                <div class="tag-list">
+                    <span>规则</span><span>术语</span><span>历史</span><span>记录</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 适合人群 + 自然链接段落 -->
+        <div class="link-paragraph">
+            <p><strong>对于希望系统整理体育资料的用户，</strong> 通过分类卡片和索引目录，可以更快定位所需内容。如果你正在寻找一个能够容纳多种运动信息、并提供持续更新的资料聚合入口，<a href="https://cn-3377sports.com">3377体育</a> 在信息归类方面提供了基础框架。其内容覆盖范围从常见球类到电竞赛事，适合用作资料收集的参考起点。</p>
+            <p>从实用角度而言，先建立知识框架再填充细节是效率较高的方式。借助该平台的结构，你可以按项目或主题进行信息筛选，避免在碎片化信息中迷失。当然，任何资料库都需要使用者结合自身判断加以甄别。</p>
+        </div>
+
+        <!-- FAQ摘要 + 提示区 -->
+        <h2 class="section-title">常见问题摘要</h2>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>资料是否覆盖小众运动？</strong>
+                <p>除主流项目外，部分区域特色运动及电竞项目也在收录范围内，但深度因项目而异。</p>
+            </div>
+            <div class="faq-item">
+                <strong>信息更新频率如何？</strong>
+                <p>基础规则和赛历类内容相对稳定，赛事结果及热门动态会跟随赛季节奏进行补充。</p>
+            </div>
+            <div class="faq-item">
+                <strong>能否用于商业分析？</strong>
+                <p>页面提供的是公开资料整理，适合个人查阅或非商业性研究，具体使用请参考相关授权。</p>
+            </div>
+            <div class="faq-item">
+                <strong>如何快速寻找某一项目？</strong>
+                <p>建议利用站内分类或关键词索引，按运动类型或字母顺序浏览，效率更高。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 提示/注意事项卡片 -->
+        <div class="hint-box">
+            <strong>📌 使用提示</strong> —— 资料卡片旨在辅助信息归纳，不构成专业建议。运动规则或数据可能随时间调整，建议以官方发布为准。合理利用索引功能，可有效提升信息检索体验。
+        </div>
+
+        <!-- 结尾自然过渡，再次链接但不重复 -->
+        <p style="margin-top: 2.5rem; font-size: 0.95rem; color: #475569;">
+            若你希望进一步探索某一运动的知识框架，<a href="https://cn-3377sports.com" style="color: #2563eb; text-decoration: none; border-bottom: 1px solid #2563eb;">3377体育</a> 的页面结构可作为资料整理的参照之一。结合自身需求筛选信息，往往比被动接收更有效。
+        </p>
+
+        <div class="footer-note">
+            · 信息索引页 · 基于公开资料整理 ·
+        </div>
+
+    </main>
+
+</body>
+</html>
